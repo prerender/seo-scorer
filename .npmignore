@@ -1,0 +1,12 @@
+.git
+.github
+.gitignore
+.npmignore
+.nyc_output
+.prettierrc.js
+.vscode
+_templates
+jest.config.js
+node_modules
+src
+tsconfig.build.json

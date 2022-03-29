@@ -1,20 +1,38 @@
 {
-  "name": "@prerender/seo-scorer",
+  "name": "prerender-seo-scorer",
   "version": "1.0.0",
-  "description": "SEO Scoring from HTML input, find and score SEO relevant tags, text, values.",
-  "main": "dist/scorer.js",
-  "repository": "https://github.com/prerender/seo-scorer",
+  "description": "SEO Scoring from HTML, find and score SEO relevant tags, text, values.",
+  "keywords": [
+    "seo",
+    "scoring",
+    "scorer",
+    "html",
+    "prerender"
+  ],
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/prerender/seo-scorert.git"
+  },
+  "bugs": {
+    "url": "https://github.com/prerender/seo-scorert/issues"
+  },
   "author": "Varga Zsolt <cto@prerender.io>",
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://prerender.io",
   "license": "GPL-3.0",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --build tsconfig.build.json",
     "test": "jest"
   },
   "dependencies": {
     "cheerio": "^1.0.0-rc.10",
     "franc": "^6.0.0",
     "htmlparser2": "^7.2.0",
-    "stopword": "^2.0.1"
+    "stopword": "^2.0.1",
+    "tslib": "^2.3.1"
   },
   "devDependencies": {
     "@types/jest": "^27.4.1",
