@@ -1,0 +1,26 @@
+{
+  "name": "@prerender/seo-scorer",
+  "version": "1.0.0",
+  "description": "SEO Scoring from HTML input, find and score SEO relevant tags, text, values.",
+  "main": "dist/scorer.js",
+  "repository": "https://github.com/prerender/seo-scorer",
+  "author": "Varga Zsolt <cto@prerender.io>",
+  "license": "GPL-3.0",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.10",
+    "franc": "^6.0.0",
+    "htmlparser2": "^7.2.0",
+    "stopword": "^2.0.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.4.1",
+    "debug": "^4.3.4",
+    "jest": "^27.5.1",
+    "ts-jest": "^27.1.4",
+    "typescript": "^4.6.3"
+  }
+}
