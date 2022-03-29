@@ -12,10 +12,10 @@
   "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/prerender/seo-scorert.git"
+    "url": "git+https://github.com/prerender/seo-scorer.git"
   },
   "bugs": {
-    "url": "https://github.com/prerender/seo-scorert/issues"
+    "url": "https://github.com/prerender/seo-scorer/issues"
   },
   "author": "Varga Zsolt <cto@prerender.io>",
   "publishConfig": {
