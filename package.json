@@ -1,6 +1,6 @@
 {
   "name": "prerender-seo-scorer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "SEO Scoring from HTML, find and score SEO relevant tags, text, values.",
   "keywords": [
     "seo",
