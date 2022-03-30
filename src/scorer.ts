@@ -1,14 +1,20 @@
 import { load } from 'cheerio';
 import * as checkers from './checks';
-import { ICheck } from './interfaces/check.interface';
+import { InvalidContent } from './exceptions';
+import { IChecker } from './interfaces/checker.interface';
 import { IResult } from './interfaces/result.interface';
 
-const checks: ICheck[] = [
+const checks: IChecker[] = [
   checkers.check_html_element,
+  checkers.check_title_element,
   // Automation: Checker injection point
 ];
 
 export const scorer = (html: string): IResult => {
+  if (typeof html !== 'string') {
+    throw new InvalidContent();
+  }
+
   // Parse the HTML to iterate on the DOM
   const $ = load(html, {
     decodeEntities: true,
