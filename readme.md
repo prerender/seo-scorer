@@ -24,3 +24,11 @@ const result = scorer(`<html>MyPage...</html>`);
 console.log(result.score);
 console.log(result.recommendations);
 ```
+
+#### Code Generator
+
+This repository uses the Hygen code generator templates, you can easily create new checkers by running the following command
+
+```sh
+yarn gen:checker --name="my checker"
+```

@@ -8,6 +8,7 @@ const checks: IChecker[] = [
   checkers.check_html_element,
   checkers.check_title_element,
   // Automation: Checker injection point
+  checkers.check_headings,
 ];
 
 export const scorer = (html: string): IResult => {

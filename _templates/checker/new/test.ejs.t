@@ -18,6 +18,6 @@ describe('<%= h.inflection.titleize(name) %> Test', () => {
     const result = check_<%= h.inflection.underscore(name) %>(load(html));
 
     expect(result.score_delta).toBeLessThan(0);
-    expect(result.recommendations.length).toBeGreaterThan(1);
+    expect(result.recommendations.length).toBeGreaterThan(0);
   });
 });
