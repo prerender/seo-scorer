@@ -14,16 +14,13 @@ const config = {
   collectCoverage: true,
   coverageReporters: ['json', 'text'],
   coverageDirectory: './.nyc_output',
-  collectCoverageFrom: [
-    './src/**/*.ts',
-    '!./src/**/index.ts',
-  ],
+  collectCoverageFrom: ['./src/**/*.ts', '!./src/**/index.ts'],
   coverageThreshold: {
     global: {
-      statements: 1,
-      functions: 1,
-      lines: 1,
-      branches: 1,
+      statements: 80,
+      functions: 80,
+      lines: 80,
+      branches: 80,
     },
   },
 

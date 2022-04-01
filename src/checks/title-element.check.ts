@@ -1,8 +1,7 @@
-import { CheerioAPI } from 'cheerio';
 import { IRecommendation } from '../interfaces';
 import { IChecker } from '../interfaces/checker.interface';
 
-export const check_title_element: IChecker = ($: CheerioAPI) => {
+export const check_title_element: IChecker = ({ $ }) => {
   const recommendations: IRecommendation[] = [];
   let score_delta = 0.0;
   const element = $('title');

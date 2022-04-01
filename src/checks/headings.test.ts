@@ -1,34 +1,60 @@
-import { load } from 'cheerio';
+import { scorer } from '../scorer';
 import { check_headings } from './headings.check';
 
 describe('Headings Test', () => {
   test.each([
-    [0, false],
-    [1, true],
-    [2, true],
-    [3, true],
-    [4, true],
-    [5, true],
-    [6, true],
-    [7, false],
-  ])('should match <h%d> element = %s', (level, isValid) => {
-    const html = `<html><body><h${level}></h${level}></body></html>`;
-    const result = check_headings(load(html));
+    ['h0', false],
+    ['h1', true],
+    ['h2', true],
+    ['h3', true],
+    ['h4', true],
+    ['h5', true],
+    ['h6', true],
+    ['h7', false],
+  ])('should match <%s> element as %s', (level, shouldBeValid) => {
+    const html = `<html><body><${level}></${level}></body></html>`;
+    const result = scorer(html, [check_headings]);
 
-    if (isValid) {
-      expect(result.score_delta).toBeGreaterThan(0);
-      expect(result.recommendations.length).toBe(0);
+    if (shouldBeValid) {
+      expect(result.score).toBeGreaterThan(0);
     } else {
-      expect(result.score_delta).toBeLessThan(0);
+      expect(result.score).toBeLessThan(0);
       expect(result.recommendations.length).toBeGreaterThan(0);
     }
   });
 
   test('should descore the missing h{1,6} element', () => {
     const html = `<html></html>`;
-    const result = check_headings(load(html));
+    const result = scorer(html, [check_headings]);
 
-    expect(result.score_delta).toBeLessThan(0);
+    expect(result.score).toBeLessThan(0);
     expect(result.recommendations.length).toBeGreaterThan(0);
+  });
+
+  describe('H1', () => {
+    test.each([
+      [0, false],
+      [1, true],
+      [2, true],
+      [3, true],
+      [4, false],
+      [8, false],
+    ])(
+      'should appreciate %dx <h1> element as %s',
+      (times, shouldBePositive) => {
+        const html = `<html><body>${`<h1>Test</h1>`.repeat(
+          times,
+        )}</body></html>`;
+        const result = scorer(html, [check_headings]);
+
+        if (shouldBePositive) {
+          expect(result.score).toBeGreaterThan(0);
+          expect(result.recommendations.length).toBe(0);
+        } else {
+          expect(result.score).toBeLessThan(0);
+          expect(result.recommendations.length).toBeGreaterThan(0);
+        }
+      },
+    );
   });
 });
