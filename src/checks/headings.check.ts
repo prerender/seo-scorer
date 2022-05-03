@@ -27,18 +27,24 @@ export const check_headings: IChecker = ({ $ }) => {
 
     // Missing H1 but has other H# elements
     if (col_h1.length === 0) {
-      score_delta -= 1;
+      const penalty = -1
+      score_delta += penalty;
+
       recommendations.push({
         description: 'Missing <h1> element',
         documentation: documentation + '#missing-h1-element',
+        scoreDelta: penalty
       });
     } else {
       // Too many H1 elements
       if (col_h1.length > 3) {
-        score_delta -= 5 + Math.min(5, col_h1.length - 3);
+        const penalty = -(5 + Math.min(5, col_h1.length - 3))
+        score_delta += penalty;
+
         recommendations.push({
           description: 'Too many <h1> element',
           documentation: documentation + '#too-many-h1-element',
+          scoreDelta: penalty
         });
       }
       // Between 1-3 H1 elements
@@ -47,10 +53,13 @@ export const check_headings: IChecker = ({ $ }) => {
       }
     }
   } else {
-    score_delta -= 10;
+    const penalty = -10
+    score_delta += penalty;
+
     recommendations.push({
       description: 'Missing heading elements',
       documentation,
+      scoreDelta: penalty
     });
   }
 

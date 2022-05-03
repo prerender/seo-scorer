@@ -6,13 +6,16 @@ export const check_title_element: IChecker = ({ $ }) => {
   let score_delta = 0.0;
   const element = $('title');
 
-  // Analyse the <title> element.
+  // Analyze the <title> element.
   if (!element.length) {
+    const penalty = -10.0
+    score_delta += penalty;
+
     recommendations.push({
       description: 'Define the <title>My Site</title> element',
       documentation: 'https://docs.prerender.io/v1/docs/page-title',
+      scoreDelta: penalty
     });
-    score_delta -= 10.0;
   } else {
     score_delta += 5.0;
   }

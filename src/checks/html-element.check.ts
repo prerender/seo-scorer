@@ -8,11 +8,13 @@ export const check_html_element: IChecker = ({ $, raw_html }) => {
   // We cannot test for the elemnent, beacuse when the $ initialized
   // it creates an <html> base with <head> and <body> if missing.
   if (!raw_html.match(/<html/i)) {
-    score_delta -= 100;
+    const penalty = -100;
+    score_delta += penalty;
 
     recommendations.push({
       description: 'Missing HTML element',
       documentation: 'https://docs.prerender.io/docs/html-element',
+      scoreDelta: penalty
     });
   } else {
     // HTML element is defined
@@ -20,13 +22,15 @@ export const check_html_element: IChecker = ({ $, raw_html }) => {
 
     const attr_lang = element.attr('lang');
 
-    // Analyse the <html lang=""> attribute.
+    // Analyze the <html lang=""> attribute.
     if (!attr_lang?.length) {
-      score_delta -= 1;
+      const penalty = -1
+      score_delta += penalty;
 
       recommendations.push({
         description: 'Define the <html lang="en_us"> attribute',
         documentation: 'https://docs.prerender.io/docs/html-element',
+        scoreDelta: penalty
       });
     } else {
       // Lang is defined
