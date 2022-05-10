@@ -26,6 +26,7 @@
   "scripts": {
     "build": "tsc --build tsconfig.build.json",
     "test": "jest",
+    "test:dev": "jest --collectCoverage=0 --silent=0",
     "gen:checker": "hygen checker new"
   },
   "dependencies": {

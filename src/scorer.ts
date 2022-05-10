@@ -9,6 +9,8 @@ const all_check: IChecker[] = [
   checkers.check_html_element,
   checkers.check_title_element,
   // Automation: Checker injection point
+  checkers.check_meta_desc,
+  checkers.check_img_alt,
   checkers.check_og_tags,
   checkers.check_headings,
 ];
