@@ -10,16 +10,17 @@ describe('Og Tags Test', () => {
       <meta property="og:type" content="video.movie" />
       <meta property="og:url" content="https://www.imdb.com/title/tt0117500/" />
       <meta property="og:image" content="https://ia.media-imdb.com/images/rock.jpg" />
+      <meta property="og:description" content="Stone fights nature" />
     </head>
     </html>
     `;
     const result = scorer(html, [check_og_tags]);
 
-    expect(result.score).toBe(4.0);
+    expect(result.score).toBe(10.0);
     expect(result.recommendations.length).toBe(0);
   });
 
-  test('should remove 1 point for each missing element', () => {
+  test('should remove 2 point for each missing element', () => {
     const html = `
     <html>
     <head>
@@ -29,7 +30,7 @@ describe('Og Tags Test', () => {
     </html>`;
     const result = scorer(html, [check_og_tags]);
 
-    expect(result.score).toBe(2);
-    expect(result.recommendations.length).toBe(2);
+    expect(result.score).toBe(1);
+    expect(result.recommendations.length).toBe(3);
   });
 });
