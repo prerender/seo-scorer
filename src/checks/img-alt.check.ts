@@ -29,7 +29,7 @@ export const check_img_alt: IChecker = ({ $, raw_html }: ICheckerContext) => {
 
     recommendations.push({
       description: 'Missing alt text on image(s)',
-      documentation: 'https://prerender.io/technical-seo-issues/',
+      documentation: 'https://docs.prerender.io/docs/picture-alt-text',
       scoreDelta: penalty,
     });
   }
