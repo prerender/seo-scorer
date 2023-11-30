@@ -19,7 +19,7 @@ export const check_meta_desc: IChecker = ({ $, raw_html }: ICheckerContext) => {
       // Add recommendation
       recommendations.push({
         description: 'Truncated meta description in SERPS',
-        documentation: 'https://prerender.io/technical-seo-issues/',
+        documentation: 'https://docs.prerender.io/v1/docs/meta-description',
         scoreDelta: penalty,
       });
     }
