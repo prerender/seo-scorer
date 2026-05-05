@@ -1,16 +1,26 @@
+import { CheerioAPI } from 'cheerio';
 import { IChecker, ICheckerContext, IRecommendation } from '../interfaces';
 
 const documentation = 'https://docs.prerender.io/docs/open-graph';
 
-export const check_og_tags: IChecker = ({ $, raw_html }: ICheckerContext) => {
+// Open Graph tags can be declared in several shapes that all appear in the wild:
+//   - canonical:        <meta property="og:title" ...>
+//   - mixed-case value: <meta property="OG:Title" ...>  (CMSes that title-case attribute values)
+//   - name fallback:    <meta name="og:title" ...>      (some CMSes / SEO plugins)
+// The CSS Level 4 `i` flag matches the attribute value case-insensitively (cheerio supports it).
+const findOgContent = ($: CheerioAPI, tag: string): string | undefined =>
+  $(`meta[property="og:${tag}" i]`).attr('content') ||
+  $(`meta[name="og:${tag}" i]`).attr('content');
+
+export const check_og_tags: IChecker = ({ $ }: ICheckerContext) => {
   const recommendations: IRecommendation[] = [];
   let score_delta = 0;
 
   // required fields
-  const ogTitle = $('meta[property="og:title"]').attr('content');
-  const ogType = $('meta[property="og:type"]').attr('content');
-  const ogImage = $('meta[property="og:image"]').attr('content');
-  const ogURL = $('meta[property="og:url"]').attr('content');
+  const ogTitle = findOgContent($, 'title');
+  const ogType = findOgContent($, 'type');
+  const ogImage = findOgContent($, 'image');
+  const ogURL = findOgContent($, 'url');
 
   const penalty = -2;
   const optionalPenalty = -1;
@@ -64,7 +74,7 @@ export const check_og_tags: IChecker = ({ $, raw_html }: ICheckerContext) => {
   }
 
   // optional fields
-  const ogDescription = $('meta[property="og:description"]').attr('content');
+  const ogDescription = findOgContent($, 'description');
 
   if (!ogDescription) {
     score_delta -= optionalPenalty;
