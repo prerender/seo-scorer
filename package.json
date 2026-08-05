@@ -1,6 +1,6 @@
 {
   "name": "prerender-seo-scorer",
-  "version": "1.5.4",
+  "version": "1.5.5",
   "description": "SEO Scoring from HTML, find and score SEO relevant tags, text, values.",
   "keywords": [
     "seo",
@@ -22,7 +22,7 @@
     "access": "public"
   },
   "homepage": "https://prerender.io",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "scripts": {
     "build": "tsc --build tsconfig.build.json",
     "test": "jest",
