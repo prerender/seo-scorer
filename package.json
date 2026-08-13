@@ -22,7 +22,7 @@
     "access": "public"
   },
   "homepage": "https://prerender.io",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "scripts": {
     "build": "tsc --build tsconfig.build.json",
     "test": "jest",
